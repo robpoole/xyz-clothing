@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;900&display=swap');
 
-body {
+* {
 	font-family: 'Noto Sans JP', sans-serif;
 }
 
@@ -35,4 +35,24 @@ header .currency {
 
 .productList a:hover {
 	color: #666;
+}
+
+.formBlock {
+	margin: 0 0 1rem;
+}
+.formBlock label {
+	display: block;
+}
+.formBlock input, .formBlock select, .formBlock button, .formBlock textarea {
+	font-size: 1rem;
+	margin: 0 1rem 0 0;
+	padding: 0.5rem;
+}
+
+.feedback {
+	color: white;
+	font-size: 1rem;
+	height: 1.5rem;
+	margin: 0 0 1rem;
+	padding: 0.5rem;
 }

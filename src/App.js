@@ -9,12 +9,13 @@ import Currency from './js/components/Currency';
 import NotFound from './js/pages/404';
 import Products from './js/pages/Products';
 import ProductDetail from './js/pages/ProductDetail';
+import EditProduct from './js/pages/EditProduct';
 
 // Styles
 import './css/xyz.css';
 
 // DB Stuff
-import products from './data/products.json';
+import productData from './data/products.json';
 
 function App() {
 
@@ -22,6 +23,15 @@ function App() {
     const [currency, setCurrency] = useState('AUD');
     function changeCurrency(newCurrency) {
         setCurrency(newCurrency);
+    }
+
+    // Handle the updating of our products
+    const [ products, setProducts ] = useState(productData)
+    const updateProduct = (id, updatedProduct) => {
+
+        // Create a copy of our products so we don't trip over ourselves
+        const updatedProducts = [ ...products ];
+        setProducts(updatedProducts.map(product => (product.id === id ? updatedProduct : product)))
     }
 
     return (
@@ -38,7 +48,8 @@ function App() {
                 <div className="main">
                     <Switch>
                         <Route exact path="/" render={(props) => <Products currency={currency} products={products} /> } />
-                        <Route path="/products/:id" render={(props) => <ProductDetail currency={currency} products={products} {...props} /> } />
+                        <Route exact path="/products/:id" render={(props) => <ProductDetail currency={currency} products={products} {...props} /> } />
+                        <Route exact path="/products/edit/:id" render={(props) => <EditProduct currency={currency} products={products} updateProduct={updateProduct} {...props} /> } />
                         <Route exact path="/404" component={NotFound} />
                         <Redirect to="/404" />
                     </Switch>
